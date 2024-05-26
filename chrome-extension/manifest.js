@@ -25,12 +25,12 @@ const manifest = Object.assign(
     name: '__MSG_extensionName__',
     version: packageJson.version,
     description: '__MSG_extensionDescription__',
-    permissions: ['storage', 'scripting', 'activeTab', 'clipboardWrite', 'clipboardRead'].concat(
+    permissions: ['storage', 'scripting', 'activeTab', 'clipboardWrite', 'clipboardRead', 'notifications'].concat(
       sidePanelConfig.permissions,
     ),
     action: {
       default_popup: 'popup/index.html',
-      default_icon: 'icon-34.png',
+      default_icon: 'icon-128.png',
     },
     // options_page: 'options/index.html',
     // background: {
@@ -41,6 +41,9 @@ const manifest = Object.assign(
     //   newtab: 'newtab/index.html',
     // },
     icons: {
+      16: 'icon-16.png',
+      32: 'icon-32.png',
+      48: 'icon-48.png',
       128: 'icon-128.png',
     },
     // content_scripts: [

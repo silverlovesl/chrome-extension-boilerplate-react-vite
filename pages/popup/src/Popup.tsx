@@ -50,20 +50,27 @@ const grabGithubComparisionListData = () => {
         result.push(lineText);
       }
     });
+    try {
+      const value = result.join('\n');
+      const textareaID = 'txt-clipboard';
+      let textarea = document.getElementById(textareaID) as HTMLTextAreaElement;
+      if (!textarea) {
+        textarea = document.createElement('textarea');
+        textarea.id = textareaID;
+        textarea.style.opacity = '0';
+        document.body.append(textarea);
+      }
+      textarea.value = value;
+      console.info(value);
+      textarea.select();
+      document.execCommand('copy');
 
-    const value = result.join('\n');
-    const textareaID = 'txt-clipboard';
-    let textarea = document.getElementById(textareaID) as HTMLTextAreaElement;
-    if (!textarea) {
-      textarea = document.createElement('textarea');
-      textarea.id = textareaID;
-      textarea.style.opacity = '0';
-      document.body.append(textarea);
+      alert("Copied to clipboard !!!")
+
+      console.log("Come to here")
+    } catch (err) {
+      console.error(err)
     }
-    textarea.value = value;
-    console.info(value);
-    textarea.select();
-    document.execCommand('copy');
   };
 
   chrome.tabs.query({ active: true, currentWindow: true }, function (tab) {
@@ -79,7 +86,7 @@ const Popup = () => {
     const onGrab = () => {
       grabGithubComparisionListData();
     };
-    return <button onClick={() => onGrab()}>Copy</button>;
+    return <a className="button blue back glass icon" data-icon="🦦" onClick={() => onGrab()}></a>;
   };
 
   return (
